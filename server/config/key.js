@@ -1,4 +1,4 @@
 module.exports = {
-    mongoUrlURI: process.env.mongoUrlURI || '',
+    mongoUrlShortenerURI: process.env.mongoUrlShortenerURI || '',
     secretOrKey: process.env.secretOrKey || ''
 }

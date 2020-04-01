@@ -21,7 +21,7 @@ console.log(req.body);
 next();
 })
 
-const db = require('./config/key').mongoUrlURI
+const db = require('./config/key').mongoUrlShortenerURI
 
 mongoose
   .connect(
@@ -33,5 +33,8 @@ mongoose
 
 const auth = require('./routes/auth')
 app.use('/auth', auth)
+
+const api = require('./routes/urlShorten');
+app.use('/api', api)
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));

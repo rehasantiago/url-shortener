@@ -5,24 +5,22 @@ const jwt = require('jsonwebtoken');
 const keys = require('../config/key');
 const validateRegisterInput = require('../validation/register')
 const validateLoginInput = require('../validation/login');
-const urls = require('../connections/index')
-const Urls = require('../models/urls')
+const User = require('../models/users')
 
 const router = express.Router();
 
 router.post('/register',(req,res) => {
-
     //form validation
     const { errors,isValid } = validateRegisterInput(req.body);
     if(!isValid){
         return res.status(400).json(errors);
     }
-    Urls.findOne({email:req.body.email}).then(user => {
+    User.findOne({email:req.body.email}).then(user => {
         if(user){
             return res.status(400).json({email:'Email already exists'})
         }
         else{
-            const newUser = new Urls({
+            const newUser = new User({
                 name:req.body.name,
                 email:req.body.email,
                 password:req.body.password1
@@ -35,7 +33,7 @@ router.post('/register',(req,res) => {
                   .save()
                   .then(user => {
                     const payload = {
-                      id:user.id
+                      id:user._id
                     };
                     jwt.sign(payload,
                       keys.secretOrKey,
@@ -48,14 +46,13 @@ router.post('/register',(req,res) => {
                         else {
                           res.json({
                             success:true,
-                            user,
                             token:"Bearer "+token
                           })
                         }
                       }
                     )
                   })
-                  .catch(err => console.log(err));
+                  .catch(err => {return res.json(err)});
               });
             });
         }
@@ -69,14 +66,14 @@ router.post("/login", (req, res) => {
     }
     const email = req.body.email;
     const password = req.body.password;
-    urls.collection('urls').findOne({ email }).then(user => {
+    User.findOne({ email }).then(user => {
       if (!user) {
         return res.status(404).json({ email: "Email not found" });
       }
       bcrypt.compare(password, user.password).then(isMatch => {
         if (isMatch) {
           const payload = {
-            id: user.id
+            id: user._id
           };
           jwt.sign(
             payload,
@@ -88,7 +85,6 @@ router.post("/login", (req, res) => {
             (err, token) => {
               res.json({
                 success: true,
-                user,
                 token: "Bearer " + token
               });
             }
