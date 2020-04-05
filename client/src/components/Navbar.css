@@ -1,0 +1,26 @@
+nav, .sidenav{
+    background-color: rgb(59, 47, 47) !important;
+}
+
+nav ul a, .navlink, .logo{
+    color: white !important;
+    font-size: larger !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+}
+  
+nav ul a:hover{
+    text-decoration: none !important;
+    color: rgb(171, 32, 184) !important;
+    background-color: rgb(221, 226, 231);
+}
+  
+.logo:hover{
+    text-decoration: none !important;
+    color: rgb(171, 32, 184) !important;
+}
+
+#bars{
+    position: absolute !important;
+    right: 0 !important;
+}

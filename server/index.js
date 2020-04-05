@@ -35,6 +35,6 @@ const auth = require('./routes/auth')
 app.use('/auth', auth)
 
 const api = require('./routes/urlShorten');
-app.use('/api', api)
+app.use('/', api)
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
