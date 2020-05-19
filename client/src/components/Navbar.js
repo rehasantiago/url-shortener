@@ -12,7 +12,7 @@ const isEmpty = require('is-empty'); //use this for signed in signed out links
 const SignOutLink = () =>{
   return(
     <>
-    <li><Link to='/login'>Login</Link></li>
+    <li><Link to='/'>Login</Link></li>
     <li><Link to='/register'>Register</Link></li>
     </>
   )

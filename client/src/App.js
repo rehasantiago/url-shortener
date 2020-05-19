@@ -12,7 +12,7 @@ class App extends Component{
             <Router>
                 <Navbar/>
                 <div>
-                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/" component={Login} />
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/dashboard" component={Dashboard} />
                 </div>

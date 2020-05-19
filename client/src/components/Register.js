@@ -31,6 +31,7 @@ class Register extends Component {
       password1: this.state.password1,
       password2: this.state.password2
     };
+    console.log(newUser);
     axios.post('http://127.0.0.1:5000/auth/register',newUser,{
       headers:{"Content-Type": "application/json"}
     })
@@ -45,11 +46,11 @@ class Register extends Component {
         const token = res.data.token
         //use react cookies
         this.props.cookies.set('token', res.data.token, { path: '/', maxAge: "31556926" })
-        this.props.setCurrentUser(res.data.user,res.data.token);
         this.props.history.push('/dashboard');
       }
     })
     .catch(err => {
+      console.log(err);
       this.setState({
         errors:err.response.data
       })
@@ -67,7 +68,7 @@ class Register extends Component {
                 <b>Register</b> below
               </h4>
               <p className="grey-text text-darken-1">
-                Already have an account? <Link to="/login">Log in</Link>
+                Already have an account? <Link to="/">Log in</Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
@@ -98,7 +99,7 @@ class Register extends Component {
                   onChange={this.onChange}
                   value={this.state.password1}
                   error={errors.password1}
-                  id="password"
+                  id="password1"
                   type="password"
                 />
                 <label htmlFor="password">Password</label>

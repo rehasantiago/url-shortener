@@ -70,7 +70,7 @@ class Dashboard extends Component{
         })
     }
     render(){
-        if(!this.props.cookies.get('token')) return <Redirect to='/login'/>
+        if(!this.props.cookies.get('token')) return <Redirect to='/'/>
         const { urls,shortUrl,errors } = this.state
         if(!urls) return <div>Loading</div>
         return(
