@@ -42,11 +42,9 @@ class Navbar extends Component{
                         <span className='h2'>Reha</span>
                     </Link>
                 </div>
-                <div className="col" id='align-bars'>
-                    <div className="nav-container">
-                        <a className="sidenav-trigger navlink" id='bars' data-target="Contact Us-as">
-                            <i className="fa fa-bars fa-2x" aria-hidden="true"></i>
-                        </a>
+                <div className="col">
+                    <div className="nav-container" id='align-bars'>
+                    <Link className="sidenav-trigger navlink" data-target="Contact Us-as"><i className="material-icons">menu</i></Link>
                         <ul className="right hide-on-med-and-down">
                             {links}
                         </ul>
